@@ -33,7 +33,19 @@ print(
 
 # listando os novos quartos disponiveis
 #hotel.listar_quartos_disponiveis()"""
+def inicializar_quartos():
+    # Criando quartos pré-cadastrados
+    quarto1 = Simples(101)
+    quarto2 = Suite(102)
+    quarto3 = SuiteFamilia(103)
 
+    # Adicionando os quartos ao hotel
+    hotel.armazenar_quarto(quarto1)
+    hotel.armazenar_quarto(quarto2)
+    hotel.armazenar_quarto(quarto3)
+
+# Inicializa os quartos ao iniciar o programa
+inicializar_quartos()
 def menu():
     print("\n----- Sistema de Reservas de Quarto -----")
     print("1. Cadastrar Cliente")
@@ -58,11 +70,10 @@ def fazer_reserva():
     cliente_cpf = input("Digite o CPF do cliente: ")
     data_entrada = input("Digite a data de entrada (dd/mm/aaaa): ")
     data_saida = input("Digite a data de saída (dd/mm/aaaa): ")
-    # chamar o metodo pra gerar o valor do quarto (quarto.get_preco_por_dia())
-
+    
     quarto = hotel.obter_quarto_por_numero(quarto_numero)
     cliente = Cliente.obter_cliente_por_cpf(cliente_cpf)
-
+    
     if quarto is None:
         print("Quarto não encontrado.")
         return
@@ -70,21 +81,33 @@ def fazer_reserva():
     if cliente is None:
         print("Cliente não encontrado.")
         return
+    
+    reserva = Reserva(
+        quarto, 
+        cliente, 
+        datetime.strptime(data_entrada, "%d/%m/%Y"), 
+        datetime.strptime(data_saida, "%d/%m/%Y")
+    )
 
-    reserva = Reserva(hotel.obter_quarto_por_numero(quarto_numero), cliente.obter_cliente_por_cpf(cliente_cpf), datetime.strptime(data_entrada, "%d/%m/%Y"), datetime.strptime(data_saida, "%d/%m/%Y"))
+    """total_dias = (data_saida - data_entrada).days
+    preco_total = quarto.get_preco_por_dia() * total_dias
+    print(f"Valor total da reserva: R${preco_total:.2f}")"""
+
     quarto.marcar_como_ocupado()
     hotel.armazenar_reserva(reserva)
     print("Reserva realizada com sucesso!")
 
-def listar_quartos_disponiveis():
-    hotel.listar_quartos_disponiveis()
-
 def listar_reservas():
-    print("\n----- Listar Reservas -----")
+    print("\n----- Lista de Reservas -----")
     reservas = hotel.obter_reservas()
+    if not reservas:
+        print("Nenhuma reserva registrada.")
     for reserva in reservas:
         reserva.exibir_informacoes()
         print("-" * 30)
+
+def listar_quartos_disponiveis():
+    hotel.listar_quartos_disponiveis()
 
 def exibir_historico_clientes():
     SistemaCliente.exibir_historico_clientes()
