@@ -2,10 +2,10 @@
 
 from cliente import Cliente
 
-
 class SistemaCliente:
-    def _init_(self):
-        self.Cliente
+
+    def __init__(self):
+        self.historico_clientes = Cliente.obter_historico_clientes()
 
     def exibir_historico_clientes(self):
         historico = Cliente.obter_historico_clientes()

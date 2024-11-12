@@ -19,3 +19,9 @@ class Hotel:
                 print(f"Quarto {quarto.get_numero()}: Disponível")
             else:
                 print(f"Quarto {quarto.get_numero()}: Ocupado")
+
+    def obter_quarto_por_numero(self, numero):
+        for quarto in self.quarto:
+            if quarto.get_numero() == numero:
+                return quarto
+        return None

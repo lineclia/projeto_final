@@ -23,5 +23,13 @@ class Cliente:
         return [self.__nome, self.__telefone, self.__email, self.__cpf]
     
     @classmethod
+    def obter_cliente_por_cpf(cls, cpf):
+        for cliente in cls.__historico_clientes:
+            if cliente.__cpf == cpf:
+                return cliente    
+        return None
+    
+    @classmethod
     def obter_historico_clientes(cls):
         return cls.__historico_clientes
+    
