@@ -30,9 +30,14 @@ class Quarto:
 
 class Simples(Quarto):
     def __init__(self, numero):
-        super().__init__(numero, "simples", 2, 150)
+        super().__init__(numero, "simples", 2, 180)
 
 
 class Suite(Quarto):
     def __init__(self, numero):
-        super().__init__(numero, "suite", 4, 210)
+        super().__init__(numero, "suite", 3, 210)
+
+
+class SuiteFamilia(Quarto):
+    def __init__(self, numero):
+        super().__init__(numero, "suite", 4, 240)
