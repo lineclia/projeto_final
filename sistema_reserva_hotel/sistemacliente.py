@@ -1,10 +1,14 @@
 # Define a classe Sistema Cliente que irá armazenar os registros dos clientes
 
+from cliente import Cliente
+
+
 class SistemaCliente:
-    def __init__(self):
+    def _init_(self):
         self.Cliente
+
     def exibir_historico_clientes(self):
-        historico = cliente.obter_historico_clientes()
+        historico = Cliente.obter_historico_clientes()
         for cliente in historico:
             cliente.exibir_informacoes()
             print("-" * 30)

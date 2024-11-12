@@ -3,29 +3,53 @@
 
 class Quarto:
     def __init__(self, numero, tipo, capacidade, preco_por_dia):
-        self.numero = numero  # numero do quarto
-        self.tipo = tipo  # tipo de quarto (simples, suite)
-        self.capacidade = capacidade  # capacidade maxima de hospedes
-        self.status = "disponivel"
-        self.preco_por_dia = preco_por_dia
+        self.__numero = numero  # numero do quarto
+        self.__tipo = tipo  # tipo de quarto (simples, suite)
+        self.__capacidade = capacidade  # capacidade maxima de hospedes
+        self.__status = "disponivel"
+        self.__preco_por_dia = preco_por_dia
+
+    def get_numero(self):
+        return self.__numero
+
+    def set_numero(self, numero):
+        self.__numero = numero
+
+    def get_tipo(self):
+        return self.__tipo
+
+    def set_tipo(self, tipo):
+        self.__tipo = tipo
+
+    def get_capacidade(self):
+        return self.__capacidade
+
+    def set_capacidade(self, capacidade):
+        self.__capacidade = capacidade
+
+    def get_status(self):
+        return self.__status
+
+    def set_status(self, status):
+        self.__status = status
 
     def verificar_disponibilidade(self):
-        return self.status == "disponivel"
+        return self.__status == "disponivel"
 
     def marcar_como_ocupado(self):
-        self.status = "ocupado"
+        self.__status = "ocupado"
 
     def marcar_como_disponivel(self):
-        self.status = "disponivel"
+        self.__status = "disponivel"
 
     def calcular_preco(self, total_dias):
-        return self.preco_por_dia * total_dias
+        return self.__preco_por_dia * total_dias
 
     def exibir_informacoes(self):
-        print(f"Quarto {self.numero} - Tipo: {self.tipo}")
-        print(f"Capacidade: {self.capacidade} pessoas ")
-        print(f"Status: {self.status}")
-        print(f"Preço por dia: R${self.preco_por_dia}")
+        print(f"Quarto {self.get_numero()} - Tipo: {self.get_tipo()}")
+        print(f"Capacidade: {self.get_capacidade()} pessoas ")
+        print(f"Status: {self.get_status()}")
+        print(f"Preço por dia: R${self.__preco_por_dia}")
 
 
 class Simples(Quarto):
